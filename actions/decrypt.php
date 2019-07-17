@@ -5,7 +5,7 @@
     include_once "../classes/Encrypt.php";
 
     //queries database for all inputs
-    $sql    = "SELECT * FROM encrypt";
+    $sql    = "SELECT * FROM enc_encrypt";
     $result = mysqli_query(Database::con(), $sql);
     $count  = mysqli_num_rows($result);
 

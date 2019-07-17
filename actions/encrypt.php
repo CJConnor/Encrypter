@@ -11,7 +11,7 @@
     $encryption = Encrypt::encryption($input);
 
     //adds input to database
-    $sql    = "INSERT INTO encrypt (input) VALUES ('$encryption')";
+    $sql    = "INSERT INTO enc_encrypt (input) VALUES ('$encryption')";
     $result = mysqli_query(Database::con(), $sql);
 
     echo "success";

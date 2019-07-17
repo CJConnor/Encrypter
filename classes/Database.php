@@ -12,15 +12,12 @@ class Database {
             $whitelist = array( '127.0.0.1', '::1' );
 
             # TEST
-            if(@explode('.', $_SERVER['HTTP_HOST'])[0] == 'test' || @explode('.', $_SERVER['HTTP_HOST'])[1] == 'test'){
-                self::$con = mysqli_connect('localhost','rushtest_root', '06J$[@%&8rSI', 'rushtest_test');
-                # LIVE
-            } else if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
-                self::$con = mysqli_connect('localhost', 'rushinsi_root', 'tZ3s}K@,7bqn', 'rushinsi_insurance');
+            if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+                self::$con = mysqli_connect('localhost', 'root', '200117', 'enc');
                 self::$live = true;
                 # LOCAL
             } else {
-                self::$con = mysqli_connect('localhost', 'root', '', 'test');
+                self::$con = mysqli_connect('localhost', 'root', '', 'enc');
                 self::$live = false;
             }
 
