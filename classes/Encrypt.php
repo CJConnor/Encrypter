@@ -10,6 +10,7 @@
          * @var string
          */
         private static $key = "!Beckwith2019?";
+        private static $method = "AES-256-CBC";
 
         /**
          * Encrypts string
@@ -19,10 +20,10 @@
         public static function encryption($plaintext) {
 
             $password = self::$key; //collect password
-
-            $method = "AES-256-CBC";  //encryption method
+            $method = self::$method;  //encryption method
+            
             $key = hash('sha256', $password, true); //hashes password to create key
-            $iv = openssl_random_pseudo_bytes(16); //creates a strin of 16 pseudo random bytes
+            $iv = openssl_random_pseudo_bytes(16); //creates a initialisation vector
 
             $ciphertext = openssl_encrypt($plaintext, $method, $key, OPENSSL_RAW_DATA, $iv); //encrypts plain text based off method
             $hash = hash_hmac('sha256', $ciphertext, $key, true); //hashes encrypted text using key
@@ -41,11 +42,10 @@
         public static function decrypt($ivHashCiphertext) {
 
             $password = self::$key; //collect password
-
-            $method = "AES-256-CBC";
+            $method = self::$method;  //encryption method
 
             //Splits encryption into the 3 separate components
-            $iv = substr($ivHashCiphertext, 0, 16); //Grabs the random bytes
+            $iv = substr($ivHashCiphertext, 0, 16); //Grabs the initialisation vector
             $hash = substr($ivHashCiphertext, 16, 32); //Grabs hash
             $ciphertext = substr($ivHashCiphertext, 48);  //Grabs encrypted text
 
