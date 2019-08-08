@@ -16,7 +16,6 @@
             <!-- Decryption form -->
             <?php include "inc/encrypt/decryption.php"?>
 
-
         </div>
 
         <!-- Background scripts -->
